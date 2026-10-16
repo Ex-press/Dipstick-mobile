@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/d_ink">
+
+    <earth.dipstick.app.gl.CameraGLView
+        android:id="@+id/glView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/barControls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        style="@style/Text90s.Badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/badge_90s"
+        android:textColor="@color/d_black"
+        android:text="@string/status_waiting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- URL plus a rename button, so the stream name is discoverable and editable
+         right where the address is shown. -->
+    <LinearLayout
+        android:id="@+id/rowStreamUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="6dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvStatus"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvStreamUrl"
+            style="@style/Text90s.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/badge_90s_blue"
+            android:textColor="@color/d_white" />
+
+        <ImageButton
+            android:id="@+id/btnRenameStream"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="6dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_yellow"
+            android:src="@drawable/ic_edit"
+            android:contentDescription="@string/cd_rename_stream" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRecordTime"
+        style="@style/Text90s.Badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/badge_90s_red"
+        android:textColor="@color/d_white"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRotation"
+        style="@style/Text90s.Badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/badge_90s"
+        android:textColor="@color/d_black"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvRecordTime"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <!-- Manual focus: vertical travel with macro at the top and distance at the bottom,
+         matching how the lens actually moves rather than an abstract 0-100. -->
+    <LinearLayout
+        android:id="@+id/panelFocus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/panel_90s"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:layout_marginEnd="12dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/glView"
+        app:layout_constraintBottom_toBottomOf="@id/glView"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ivMacro"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_macro"
+            android:contentDescription="@string/cd_macro"
+            app:tint="@color/d_yellow" />
+
+        <FrameLayout
+            android:layout_width="52dp"
+            android:layout_height="210dp">
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderFocus"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:rotation="270"
+                android:valueFrom="0"
+                android:valueTo="100"
+                android:value="50"
+                android:stepSize="1"
+                app:labelBehavior="gone"
+                app:thumbRadius="9dp"
+                app:trackHeight="4dp" />
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/ivDistance"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/ic_distance"
+            android:contentDescription="@string/cd_distance"
+            app:tint="@color/d_yellow" />
+
+        <TextView
+            android:id="@+id/tvFocusValue"
+            style="@style/Text90s.Badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/d_yellow"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/panelAdjust"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/panel_90s"
+        android:visibility="gone"
+        app:layout_constraintHeight_max="168dp"
+        app:layout_constraintBottom_toTopOf="@id/barControls"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/containerControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="6dp" />
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/barControls"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/d_purple"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:paddingTop="7dp"
+        android:paddingBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnCamera"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_yellow"
+            android:src="@drawable/ic_power"
+            android:contentDescription="@string/cd_camera" />
+
+        <ImageButton
+            android:id="@+id/btnRecord"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_red"
+            android:src="@drawable/ic_record"
+            android:enabled="false"
+            android:contentDescription="@string/cd_record" />
+
+        <ImageButton
+            android:id="@+id/btnMic"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_white"
+            android:src="@drawable/ic_mic_off"
+            android:contentDescription="@string/cd_mic" />
+
+        <ImageButton
+            android:id="@+id/btnRotate"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_white"
+            android:src="@drawable/ic_rotate"
+            android:enabled="false"
+            android:contentDescription="@string/cd_rotate" />
+
+        <ImageButton
+            android:id="@+id/btnStabilize"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_white"
+            android:src="@drawable/ic_stabilize"
+            android:contentDescription="@string/cd_stabilize" />
+
+        <!-- AppCompatButton, not Button: a plain <Button> is inflated as a MaterialButton,
+             whose theme backgroundTint paints over our own background drawable. -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFocus"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/d_black"
+            android:background="@drawable/btn_90s_white"
+            android:enabled="false"
+            android:backgroundTint="@null"
+            android:text="@string/action_af" />
+
+        <ImageButton
+            android:id="@+id/btnAdjust"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_white"
+            android:src="@drawable/ic_adjust"
+            android:enabled="false"
+            android:contentDescription="@string/cd_adjust" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnHq"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/d_black"
+            android:background="@drawable/btn_90s_white"
+            android:backgroundTint="@null"
+            android:enabled="false"
+            android:text="@string/action_hq" />
+
+        <ImageButton
+            android:id="@+id/btnStream"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_white"
+            android:src="@drawable/ic_stream"
+            android:contentDescription="@string/cd_stream" />
+
+        <ImageButton
+            android:id="@+id/btnShare"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/btn_90s_white"
+            android:src="@drawable/ic_share"
+            android:enabled="false"
+            android:contentDescription="@string/cd_share" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

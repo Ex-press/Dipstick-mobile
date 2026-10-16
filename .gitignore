@@ -1,0 +1,26 @@
+*.iml
+.gradle/
+build/
+local.properties
+.idea/
+.DS_Store
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Release signing - never commit these
+keystore.properties
+*.jks
+*.keystore
+
+# Editor backups and autosaves — these can shadow ignored files (keystore.properties~)
+*~
+\#*\#
+.*.swp
+
+# Kotlin compiler scratch
+.kotlin/
+
+# Build artefacts
+*.apk
+*.aab

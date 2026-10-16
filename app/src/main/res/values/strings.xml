@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Dipstick</string>
+
+    <string name="status_waiting">PLUG IN CAMERA</string>
+    <string name="status_connecting">CONNECTING…</string>
+    <string name="status_live">LIVE</string>
+    <string name="status_detached">UNPLUGGED</string>
+    <string name="status_reconnecting">CAMERA DETECTED — RECONNECTING…</string>
+    <string name="status_needs_permission">Camera permission is required to open a USB camera</string>
+    <string name="status_needs_mic">Microphone permission is required for voiceover</string>
+
+    <string name="cd_camera">Start or stop camera</string>
+    <string name="cd_record">Start or stop recording</string>
+    <string name="cd_mic">Toggle voiceover microphone</string>
+    <string name="cd_rotate">Rotate image</string>
+    <string name="cd_adjust">Image adjustments</string>
+    <string name="cd_stream">Stream over Wi-Fi</string>
+    <string name="cd_share">Share last recording</string>
+    <string name="cd_stabilize">Toggle image stabilisation</string>
+    <string name="label_stream">Stream</string>
+    <string name="label_jpeg_quality">JPEG quality</string>
+    <string name="label_stabilizer">Stabiliser</string>
+    <string name="label_stab_strength">Shake damping</string>
+    <string name="stab_unavailable">This phone has no gyroscope</string>
+
+    <string name="rotation_fmt">%1$d°</string>
+    <string name="rec_fmt">REC  %1$02d:%2$02d  ·  %3$s</string>
+    <string name="action_share">Share</string>
+    <string name="action_reset">RESET ALL</string>
+
+    <string name="label_hardware">Camera (hardware)</string>
+    <string name="label_processing">Image processing</string>
+    <string name="label_brightness">Brightness</string>
+    <string name="label_contrast">Contrast</string>
+    <string name="label_gamma">Gamma</string>
+    <string name="label_saturation">Saturation</string>
+    <string name="label_black_level">Black level</string>
+    <string name="label_white_level">White level</string>
+    <string name="label_unsupported">none exposed</string>
+    <string name="label_auto_focus">Auto focus</string>
+    <string name="toggle_fmt">%1$s: %2$s</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="action_mf">MF</string>
+    <string name="action_af">AF</string>
+    <string name="action_hq">HQ</string>
+    <string name="cd_hq">Toggle uncompressed high quality</string>
+    <string name="hq_on">Uncompressed %1$dx%2$d @ %3$dfps</string>
+    <string name="hq_off">MJPEG %1$dx%2$d @ %3$dfps</string>
+    <string name="hq_unavailable">This camera offers no uncompressed format</string>
+    <string name="hq_busy">Stop recording before changing format</string>
+    <string name="cd_macro">Macro (near)</string>
+    <string name="cd_distance">Distance (far)</string>
+    <string name="focus_value_fmt">%1$d%%</string>
+
+    <string name="stream_url_fmt">http://%1$s:%2$d</string>
+    <string name="stream_failed">Could not start the stream server</string>
+    <string name="cd_rename_stream">Rename the stream</string>
+    <string name="hostname_title">Stream name</string>
+    <string name="hostname_message">Viewers open http://NAME.local:8080 on the same Wi-Fi. Letters, numbers and hyphens only.</string>
+    <string name="hostname_invalid">That name has no usable characters</string>
+    <string name="hostname_set">Stream name set to %1$s</string>
+    <string name="hostname_live">Now reachable at %1$s</string>
+    <string name="hostname_taken">%1$s was taken on this network — registered as %2$s instead</string>
+</resources>

@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="24" android:viewportHeight="24"
+    android:tint="#000000">
+    <!-- A locked frame with a steady centre, flanked by shake arcs being held off -->
+    <path android:fillColor="#00000000" android:strokeColor="#000000" android:strokeWidth="2.3"
+        android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M8,4 L5,4 L5,7" />
+    <path android:fillColor="#00000000" android:strokeColor="#000000" android:strokeWidth="2.3"
+        android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M16,4 L19,4 L19,7" />
+    <path android:fillColor="#00000000" android:strokeColor="#000000" android:strokeWidth="2.3"
+        android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M8,20 L5,20 L5,17" />
+    <path android:fillColor="#00000000" android:strokeColor="#000000" android:strokeWidth="2.3"
+        android:strokeLineCap="round" android:strokeLineJoin="round"
+        android:pathData="M16,20 L19,20 L19,17" />
+    <path android:fillColor="#000000"
+        android:pathData="M12,12m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+</vector>

@@ -1,0 +1,4 @@
+-keep class com.serenegiant.usb.** { *; }
+-keep interface com.serenegiant.usb.** { *; }
+-keep class com.herohan.uvcapp.** { *; }
+-keep interface com.herohan.uvcapp.** { *; }

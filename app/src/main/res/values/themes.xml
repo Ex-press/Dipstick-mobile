@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Dipstick" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="android:windowBackground">@color/d_ink</item>
+        <item name="colorPrimary">@color/d_yellow</item>
+        <item name="colorSecondary">@color/d_blue</item>
+        <item name="android:statusBarColor">@color/d_purple</item>
+        <item name="colorOnPrimary">@color/d_black</item>
+    </style>
+
+    <!-- Chunky sticker-style label: heavy, tight, black-on-yellow. -->
+    <style name="Text90s.Label" parent="">
+        <item name="android:textColor">@color/d_black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.02</item>
+    </style>
+
+    <style name="Text90s.Badge" parent="">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:padding">6dp</item>
+    </style>
+</resources>

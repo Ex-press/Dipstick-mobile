@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The seaCell Dipstick camera: icSpring, VID 0x32E6 / PID 0x5841 (decimal below) -->
+    <usb-device vendor-id="13030" product-id="22593" />
+
+    <!-- Any standards-compliant UVC camera: USB Video Class (0x0E) -->
+    <usb-device class="14" />
+    <!-- Misc/IAD composite devices, which is how most UVC cameras declare themselves -->
+    <usb-device class="239" subclass="2" protocol="1" />
+    <!-- Teslong-style endoscopes: vendor-specific bulk interfaces -->
+    <usb-device class="255" subclass="240" protocol="0" />
+    <usb-device class="255" subclass="240" protocol="1" />
+    <!-- Endoscopes that present as a USB ethernet adapter (CDC / RNDIS) -->
+    <usb-device class="2" subclass="224" />
+    <usb-device class="2" subclass="6" />
+</resources>

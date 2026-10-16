@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sampled directly from Graphics/dipstick sticker.png so the app and the sticker match. -->
+<resources>
+    <color name="ic_launcher_background">#403080</color>
+
+    <color name="d_yellow">#F0D020</color>
+    <color name="d_yellow_dk">#D4B510</color>
+    <color name="d_blue">#3090D0</color>
+    <color name="d_blue_dk">#1F6FA8</color>
+    <color name="d_purple">#403080</color>
+    <color name="d_purple_dk">#2B2059</color>
+    <color name="d_white">#F5F5F0</color>
+    <color name="d_black">#000000</color>
+    <color name="d_red">#E03A2F</color>
+    <color name="d_ink">#101018</color>
+
+    <color name="d_panel_scrim">#CC101018</color>
+</resources>

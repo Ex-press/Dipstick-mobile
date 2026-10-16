@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- USB host mode is mandatory: without it the phone cannot talk to the camera at all. -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="true" />
+
+    <!-- Android 10+ refuses to open a USB *video class* device unless the app holds CAMERA,
+         even though the sensor is external and none of the built-in cameras are touched.
+         Without this the system logs "Camera permission required for USB video class
+         devices" and the open silently retries forever. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- Binding the MJPEG server socket. No outbound traffic: the stream stays on the LAN. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Optional: microphone voiceover recorded onto the video's audio track. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- The UVC library's manifest pulls these in, but this app never needs them: all
+         writing goes through MediaStore under scoped storage (hence minSdk 29). Left in,
+         MANAGE_EXTERNAL_STORAGE alone would fail Play review - Google only grants "All
+         files access" to file managers, backup and antivirus apps. -->
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:node="remove" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        tools:node="remove" />
+    <uses-permission android:name="android.permission.DUMP"
+        tools:node="remove" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Android drops multicast by default; the mDNS responder needs it to hear queries. -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- ...but we do not need a built-in camera, so do not let this narrow Play Store reach. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Dipstick">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/Theme.Dipstick">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Launch/foreground the app automatically when the dipstick camera is plugged in.
+                 This also grants USB permission implicitly, skipping the permission dialog. -->
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
+    </application>
+</manifest>
